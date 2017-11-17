@@ -9,7 +9,7 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
+set $mod Mod1
 
 # font for window titles. ISO 10646 = Unicode
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -18,7 +18,7 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec xfce4-terminal
 
 # kill focused window
 bindsym $mod+Shift+A kill
@@ -138,14 +138,26 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 	position top
-	tray_output HDMI-1
 }
 # xfce4-notify
 for_window [class="Xfce4-notifyd"] floating enable;border none; focus mode_toggle
 # shutdown menu
 bindsym $mod+Shift+p exec xfce4-session-logout
-# xfce settings
-#bindsym $mod+Shift+s exec xfce4-settings-manager
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Pause mode "$mode_system"
 
 bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume 0 -- '-5%'
 bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume 0 -- '+5%'
@@ -154,15 +166,14 @@ bindsym --release $mod+Shift+s exec /home/seb/bin/myscrot -s
 
 # autostart applications
 exec --no-startup-id nm-applet
-exec --no-startup-id clipit
-exec xautolock -time 5 -locker /home/seb/bin/lock -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"
+exec --no-startup-id volumeicon
+#exec xautolock -time 5 -locker /home/seb/bin/lock -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"
 
 bindsym $mod+l exec /home/seb/bin/lock
 
-workspace 1 output VGA-1
-workspace 2 output HDMI-1
-workspace 3 output HDMI-1
-workspace 4 output HDMI-1
-workspace 5 output HDMI-1
-workspace 6 output HDMI-1
-workspace 7 output HDMI-2
+workspace 1 output LVDS1
+workspace 2 output HDMI1
+workspace 3 output HDMI1
+workspace 4 output HDMI1
+workspace 5 output HDMI1
+workspace 6 output HDMI1
