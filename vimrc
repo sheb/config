@@ -13,6 +13,8 @@ set mouse=
 set paste
 set splitbelow
 set splitright
+set t_Co=256
+set laststatus=2
 
 "split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -32,9 +34,9 @@ filetype off
 " %% expand to the path of the current open file
 cabbr <expr> %% expand('%:p:h')
 
-winpos 654 36
-set lines=50
-set columns=150
+"winpos 654 36
+"set lines=50
+"set columns=150
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -50,7 +52,7 @@ Plugin 'gmarik/Vundle.vim'
 
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'nvie/vim-flake8'
 Plugin 'jnurmine/Zenburn'
@@ -58,14 +60,14 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'kien/ctrlp.vim'
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-let g:SimpylFold_docstring_preview=1
+"let g:SimpylFold_docstring_preview=1
 
 "au BufNewFile,BufRead *.py
 "    \ set tabstop=4
@@ -78,18 +80,13 @@ let g:SimpylFold_docstring_preview=1
 
 "au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+"let g:ycm_autoclose_preview_window_after_completion=1
+"map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
-let python_highlight_all=1
+"let python_highlight_all=1
 
-if has('gui_running')
-  set background=dark
-  colorscheme solarized
-else
-  colorscheme zenburn
-endif
+colorscheme zenburn
 
 let g:syntastic_python_checkers = ['flake8']
 
-nnoremap <F3> :NERDTree<CR>
+nnoremap <F3> :NERDTreeToggle<CR>
