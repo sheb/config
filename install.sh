@@ -2,7 +2,7 @@
 
 set -e
 
-FILES="gitconfig xsession tmux.conf vimrc i3"
+FILES="gitconfig xsession tmux.conf vimrc i3 emacs"
 BASEPATH=$(pwd)
 
 if [ -z "${HOME}" ]
