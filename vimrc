@@ -15,6 +15,8 @@ set splitbelow
 set splitright
 set t_Co=256
 set laststatus=2
+set cul
+set colorcolumn=80
 
 "split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -52,15 +54,16 @@ Plugin 'gmarik/Vundle.vim'
 
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
-"Bundle 'Valloric/YouCompleteMe'
+Bundle 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'nvie/vim-flake8'
 Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
+"Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'kien/ctrlp.vim'
 "Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"Plugin 'tpope/vim-fugitive'
 
 
 " All of your Plugins must be added before the following line
@@ -80,13 +83,16 @@ filetype plugin indent on    " required
 
 "au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
-"let g:ycm_autoclose_preview_window_after_completion=1
-"map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+let g:ycm_python_binary_path = 'python'
+let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 
-"let python_highlight_all=1
+let python_highlight_all=1
 
 colorscheme zenburn
 
 let g:syntastic_python_checkers = ['flake8']
 
 nnoremap <F3> :NERDTreeToggle<CR>
+
