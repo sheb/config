@@ -167,6 +167,8 @@ bindsym --release $mod+Shift+s exec /home/seb/bin/myscrot -s
 # autostart applications
 exec --no-startup-id nm-applet
 exec --no-startup-id volumeicon
+exec --no-startup-id redshift
+exec --no-startup-id numlockx on
 #exec xautolock -time 5 -locker /home/seb/bin/lock -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"
 
 bindsym $mod+l exec /home/seb/bin/lock
